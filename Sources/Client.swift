@@ -1,0 +1,2 @@
+public protocol Client {
+}
