@@ -73,10 +73,30 @@ public struct DefaultClient: Client {
         )
     }
 
+    public func deleteStatuses(accessToken: String, id: Int, complete: @escaping (Result<Void, Error>) -> Void) {
+        return send(
+            request: DeleteStatuses(
+                configuration: configuration,
+                accessToken: accessToken,
+                id: id
+            ),
+            complete: complete
+        )
+    }
+
     private func send<Request: Mastodon.Request>(
         request: Request,
         complete: @escaping (Result<Request.Response, Error>) -> Void
     ) where Request.Response: Decodable {
+        self.session.send(request) {
+            complete($0.mapError(convert))
+        }
+    }
+
+    private func send<Request: Mastodon.Request>(
+        request: Request,
+        complete: @escaping (Result<Request.Response, Error>) -> Void
+    ) where Request.Response == Void {
         self.session.send(request) {
             complete($0.mapError(convert))
         }

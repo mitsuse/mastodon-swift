@@ -23,7 +23,9 @@ public protocol Client {
         spoilerText: String?,
         visibility: VisibilityJson?,
         complete: @escaping (Result<StatusJson, Error>) -> Void
-    ) 
+    )
+
+    func deleteStatuses(accessToken: String, id: Int, complete: @escaping (Result<Void, Error>) -> Void)
 }
 
 public struct Configuration {

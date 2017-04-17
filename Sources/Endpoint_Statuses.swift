@@ -31,3 +31,14 @@ struct PostStatuses: Request, Authorized {
         return JSONDataParser(readingOptions: [])
     }
 }
+
+struct DeleteStatuses: Request, Authorized {
+    typealias Response = Void
+
+    let method: HTTPMethod = .post
+    var path: String { return "/api/v1/statuses/\(id)" }
+
+    let configuration: Configuration
+    let accessToken: String
+    let id: Int
+}
