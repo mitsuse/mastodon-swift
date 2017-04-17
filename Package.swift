@@ -6,6 +6,11 @@ let package = Package(
     name: "Mastodon",
     dependencies: [
         .Package(
+            url: "https://github.com/antitypical/Result.git",
+            majorVersion: 3,
+            minor: 2
+        ),
+        .Package(
             url: "https://github.com/ikesyo/Himotoki.git",
             majorVersion: 3,
             minor: 0
