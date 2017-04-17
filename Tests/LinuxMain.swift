@@ -4,4 +4,5 @@ import XCTest
 
 XCTMain([
     testCase(MastodonTests.allTests),
+    testCase(MammutTests.allTests),
 ])
