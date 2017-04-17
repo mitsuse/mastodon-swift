@@ -4,15 +4,6 @@ import PackageDescription
 
 let package = Package(
     name: "Mastodon",
-    targets: [
-        Target(name: "Mastodon"),
-        Target(
-            name: "mammut",
-            dependencies: [
-                .Target(name: "Mastodon"),
-            ]
-        ),
-    ],
     dependencies: [
         .Package(
             url: "https://github.com/ikesyo/Himotoki.git",
