@@ -8,14 +8,14 @@ public struct StatusJson {
     public let account: AccountJson
     public let inReplyToId: Int?
     public let inReplyToAccountId: Int?
-//    public let reblog: StatusJson?
+    public let reblog: Reference<StatusJson?>
     public let content: String
     public let createdAt: String
     public let reblogsCount: Int
     public let favouritesCount: Int
     public let reblogged: Bool
     public let favourited: Bool
-    public let sensitive: Bool
+    public let sensitive: Bool?
     public let spoilerText: String
     public let visibility: VisibilityJson
     public let mediaAttachments: [AttachmentJson]
@@ -33,14 +33,15 @@ extension StatusJson: Decodable {
             account: e <| "account",
             inReplyToId: e <|? "in_reply_to_id",
             inReplyToAccountId: e <|? "in_reply_to_account_id",
+            reblog: Reference(e <|? "reblog"),
             content: e <| "content",
             createdAt: e <| "created_at",
             reblogsCount: e <| "reblogs_count",
             favouritesCount: e <| "favourites_count",
             reblogged: e <| "reblogged",
             favourited: e <| "favourited",
-            sensitive: e <| "sensitive",
-            spoilerText: e <| "spo,iler_text",
+            sensitive: e <|? "sensitive",
+            spoilerText: e <| "spoiler_text",
             visibility: e <| "visibility",
             mediaAttachments: e <|| "media_attachments",
             mentions: e <|| "mentions",
