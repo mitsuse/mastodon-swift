@@ -84,10 +84,27 @@ public struct DefaultClient: Client {
         )
     }
 
+    public func getTimelinesHome(
+        accessToken: String,
+        maxId: Int?,
+        sinceId: Int?,
+        complete: @escaping (Result<[StatusJson], Error>) -> Void
+    ) {
+        return send(
+            request: GetTimelinesHomeRequest(
+                configuration: configuration,
+                accessToken: accessToken,
+                maxId: maxId,
+                sinceId: sinceId
+            ),
+            complete: complete
+        )
+    }
+
     private func send<Request: Mastodon.Request>(
         request: Request,
         complete: @escaping (Result<Request.Response, Error>) -> Void
-    ) where Request.Response: Decodable {
+    ) {
         self.session.send(request) {
             complete($0.mapError(convert))
         }

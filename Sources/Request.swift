@@ -35,3 +35,13 @@ extension Request where Self: Authorized {
         ]
     }
 }
+
+public protocol ArrayExpected {
+    associatedtype Element: Decodable
+}
+
+extension Request where Self: ArrayExpected {
+    public func response(from object: Any, urlResponse: HTTPURLResponse) throws -> [Element] {
+        return try decodeArray(object)
+    }
+}

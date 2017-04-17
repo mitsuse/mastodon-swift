@@ -26,6 +26,13 @@ public protocol Client {
     )
 
     func deleteStatuses(accessToken: String, id: Int, complete: @escaping (Result<Void, Error>) -> Void)
+
+    func getTimelinesHome(
+        accessToken: String,
+        maxId: Int?,
+        sinceId: Int?,
+        complete: @escaping (Result<[StatusJson], Error>) -> Void
+    )
 }
 
 public struct Configuration {
