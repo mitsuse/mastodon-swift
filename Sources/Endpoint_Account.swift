@@ -5,7 +5,7 @@ struct GetAccounts: Request, Authorized {
     typealias Response = AccountJson
 
     let method: HTTPMethod = .get
-    var path: String { return "/api/v1/account/\(id)" }
+    var path: String { return "/api/v1/accounts/\(id)" }
 
     let configuration: Configuration
     let accessToken: String
@@ -20,7 +20,7 @@ struct VerifyCredentials: Request, Authorized {
     typealias Response = AccountJson
 
     let method: HTTPMethod = .get
-    let path = "/api/v1/account/verify_credentials"
+    let path = "/api/v1/accounts/verify_credentials"
 
     let configuration: Configuration
     let accessToken: String
