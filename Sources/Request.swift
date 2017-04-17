@@ -18,6 +18,12 @@ extension Request where Response: Decodable {
     }
 }
 
+extension Request where Response == Void {
+    public func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
+        return ()
+    }
+}
+
 public protocol Authorized {
     var accessToken: String { get }
 }
