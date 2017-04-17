@@ -15,7 +15,7 @@ public struct StatusJson {
     public let favouritesCount: Int
     public let reblogged: Bool
     public let favourited: Bool
-    public let sensitive: Bool
+    public let sensitive: Bool?
     public let spoilerText: String
     public let visibility: VisibilityJson
     public let mediaAttachments: [AttachmentJson]
@@ -39,7 +39,7 @@ extension StatusJson: Decodable {
             favouritesCount: e <| "favourites_count",
             reblogged: e <| "reblogged",
             favourited: e <| "favourited",
-            sensitive: e <| "sensitive",
+            sensitive: e <|? "sensitive",
             spoilerText: e <| "spo,iler_text",
             visibility: e <| "visibility",
             mediaAttachments: e <|| "media_attachments",
