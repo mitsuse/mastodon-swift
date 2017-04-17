@@ -8,7 +8,7 @@ public struct StatusJson {
     public let account: AccountJson
     public let inReplyToId: Int?
     public let inReplyToAccountId: Int?
-//    public let reblog: StatusJson?
+    public let reblog: Reference<StatusJson?>
     public let content: String
     public let createdAt: String
     public let reblogsCount: Int
@@ -33,6 +33,7 @@ extension StatusJson: Decodable {
             account: e <| "account",
             inReplyToId: e <|? "in_reply_to_id",
             inReplyToAccountId: e <|? "in_reply_to_account_id",
+            reblog: Reference(e <|? "reblog"),
             content: e <| "content",
             createdAt: e <| "created_at",
             reblogsCount: e <| "reblogs_count",
