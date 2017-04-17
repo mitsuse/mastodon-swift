@@ -49,6 +49,30 @@ public struct DefaultClient: Client {
         )
     }
 
+    // TODO: Support for toot with media.
+    public func postStatuses(
+        accessToken: String,
+        status: String,
+        inReplyToId: Int?,
+        sensitive: Bool?,
+        spoilerText: String?,
+        visibility: VisibilityJson?,
+        complete: @escaping (Result<StatusJson, Error>) -> Void
+    ) {
+        return send(
+            request: PostStatuses(
+                configuration: configuration,
+                accessToken: accessToken,
+                status: status,
+                inReplyToId: inReplyToId,
+                sensitive: sensitive,
+                spoilerText: spoilerText,
+                visibility: visibility
+            ),
+            complete: complete
+        )
+    }
+
     private func send<Request: Mastodon.Request>(
         request: Request,
         complete: @escaping (Result<Request.Response, Error>) -> Void

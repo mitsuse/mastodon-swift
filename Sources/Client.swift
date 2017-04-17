@@ -13,6 +13,17 @@ public protocol Client {
     func getAccounts(accessToken: String, id: Int, complete: @escaping (Result<AccountJson, Error>) -> Void)
 
     func verifyCredentials(accessToken: String, complete: @escaping (Result<AccountJson, Error>) -> Void)
+
+    // TODO: Support for toot with media.
+    func postStatuses(
+        accessToken: String,
+        status: String,
+        inReplyToId: Int?,
+        sensitive: Bool?,
+        spoilerText: String?,
+        visibility: VisibilityJson?,
+        complete: @escaping (Result<StatusJson, Error>) -> Void
+    ) 
 }
 
 public struct Configuration {
