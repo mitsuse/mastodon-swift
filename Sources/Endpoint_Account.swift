@@ -9,7 +9,7 @@ struct GetAccounts: Request, Authorized {
 
     let configuration: Configuration
     let accessToken: String
-    let id: String
+    let id: Int
 
     var dataParser: DataParser {
         return JSONDataParser(readingOptions: [])

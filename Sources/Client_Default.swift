@@ -28,7 +28,7 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func getAccounts(accessToken: String, id: String, complete: @escaping (Result<AccountJson, Error>) -> Void) {
+    public func getAccounts(accessToken: String, id: Int, complete: @escaping (Result<AccountJson, Error>) -> Void) {
         return send(
             request: GetAccounts(
                 configuration: configuration,

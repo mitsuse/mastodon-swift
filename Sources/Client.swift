@@ -10,7 +10,7 @@ public protocol Client {
         complete: @escaping (Result<OAuthTokenJson, Error>) -> Void
     )
 
-    func getAccounts(accessToken: String, id: String, complete: @escaping (Result<AccountJson, Error>) -> Void)
+    func getAccounts(accessToken: String, id: Int, complete: @escaping (Result<AccountJson, Error>) -> Void)
 
     func verifyCredentials(accessToken: String, complete: @escaping (Result<AccountJson, Error>) -> Void)
 }
