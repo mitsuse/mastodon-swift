@@ -10,7 +10,7 @@ public struct AccountJson {
     public let createdAt: String
     public let followersCount: Int
     public let followingCount: Int
-    public let statusCount: Int
+    public let statusesCount: Int
     public let note: String
     public let url: URL
     public let avatar: URL
@@ -30,7 +30,7 @@ extension AccountJson: Decodable {
             createdAt: e <| "created_at",
             followersCount: e <| "followers_count",
             followingCount: e <| "following_count",
-            statusCount: e <| "statusCount",
+            statusesCount: e <| "statuses_count",
             note: e <| "note",
             url: urlTransformer.apply(e <| "url"),
             avatar: urlTransformer.apply(e <| "avatar"),
