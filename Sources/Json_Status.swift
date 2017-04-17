@@ -40,7 +40,7 @@ extension StatusJson: Decodable {
             reblogged: e <| "reblogged",
             favourited: e <| "favourited",
             sensitive: e <|? "sensitive",
-            spoilerText: e <| "spo,iler_text",
+            spoilerText: e <| "spoiler_text",
             visibility: e <| "visibility",
             mediaAttachments: e <|| "media_attachments",
             mentions: e <|| "mentions",
