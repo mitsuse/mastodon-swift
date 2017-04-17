@@ -1,5 +1,14 @@
+import Result
+
 public protocol Client {
     var configuration: Configuration { get }
+
+    func postOAuthToken(
+        userName: String,
+        password: String,
+        scope: String,
+        complete: @escaping (Result<OAuthTokenJson, Error>) -> Void
+    )
 }
 
 public struct Configuration {
