@@ -17,3 +17,15 @@ extension Request where Response: Decodable {
         return try Response.decodeValue(object)
     }
 }
+
+public protocol Authorized {
+    var accessToken: String { get }
+}
+
+extension Request where Self: Authorized {
+    public var headerFields: [String: String] {
+        return [
+            "Authorization": "Bearer \(accessToken)",
+        ]
+    }
+}

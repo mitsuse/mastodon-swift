@@ -28,6 +28,27 @@ public struct DefaultClient: Client {
         )
     }
 
+    public func getAccounts(accessToken: String, id: String, complete: @escaping (Result<AccountJson, Error>) -> Void) {
+        return send(
+            request: GetAccounts(
+                configuration: configuration,
+                accessToken: accessToken,
+                id: id
+            ),
+            complete: complete
+        )
+    }
+
+    public func verifyCredentials(accessToken: String, complete: @escaping (Result<AccountJson, Error>) -> Void) {
+        return send(
+            request: VerifyCredentials(
+                configuration: configuration,
+                accessToken: accessToken
+            ),
+            complete: complete
+        )
+    }
+
     private func send<Request: Mastodon.Request>(
         request: Request,
         complete: @escaping (Result<Request.Response, Error>) -> Void
