@@ -17,8 +17,9 @@ struct PostOAuthTokenRequest: Request {
             formObject: [
                 "client_id": configuration.clientId,
                 "client_secret": configuration.clientSecret,
-                "grant_type": password,
+                "grant_type": "password",
                 "username": userName,
+                "password": password,
                 "scope": scope,
             ]
         )
