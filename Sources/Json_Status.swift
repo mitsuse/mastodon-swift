@@ -13,7 +13,7 @@ public struct StatusJson {
     public let createdAt: String
     public let reblogsCount: Int
     public let favouritesCount: Int
-    public let reblogged: Bool
+    public let reblogged: Bool?
     public let favourited: Bool
     public let sensitive: Bool?
     public let spoilerText: String
@@ -21,7 +21,7 @@ public struct StatusJson {
     public let mediaAttachments: [AttachmentJson]
     public let mentions: [MentionJson]
     public let tags: [TagJson]
-    public let application: ApplicationJson
+    public let application: ApplicationJson?
 }
 
 extension StatusJson: Decodable {
@@ -38,7 +38,7 @@ extension StatusJson: Decodable {
             createdAt: e <| "created_at",
             reblogsCount: e <| "reblogs_count",
             favouritesCount: e <| "favourites_count",
-            reblogged: e <| "reblogged",
+            reblogged: e <|? "reblogged",
             favourited: e <| "favourited",
             sensitive: e <|? "sensitive",
             spoilerText: e <| "spoiler_text",
@@ -46,7 +46,7 @@ extension StatusJson: Decodable {
             mediaAttachments: e <|| "media_attachments",
             mentions: e <|| "mentions",
             tags: e <|| "tags",
-            application: e <| "application"
+            application: e <|? "application"
         )
     }
 }
