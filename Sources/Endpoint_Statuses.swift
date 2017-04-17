@@ -35,7 +35,7 @@ struct PostStatuses: Request, Authorized {
 struct DeleteStatuses: Request, Authorized {
     typealias Response = Void
 
-    let method: HTTPMethod = .post
+    let method: HTTPMethod = .delete
     var path: String { return "/api/v1/statuses/\(id)" }
 
     let configuration: Configuration
