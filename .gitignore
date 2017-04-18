@@ -38,7 +38,6 @@ playground.xcworkspace
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
 Packages/
 .build/
-*.xcodeproj
 
 # CocoaPods
 #
@@ -51,7 +50,7 @@ Packages/
 # Carthage
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
+Carthage/Checkouts
 
 Carthage/Build
 
