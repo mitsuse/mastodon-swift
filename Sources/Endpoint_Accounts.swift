@@ -29,3 +29,33 @@ struct VerifyCredentials: Request, Authorized {
         return JSONDataParser(readingOptions: [])
     }
 }
+
+struct BlockAccountsRequest: Request, Authorized {
+    typealias  Response = RelationshipJson
+
+    let method: HTTPMethod = .post
+    var path: String { return "/api/v1/accounts/\(id)/block" }
+
+    let configuration: Configuration
+    let accessToken: String
+    let id: Int
+
+    var dataParser: DataParser {
+        return JSONDataParser(readingOptions: [])
+    }
+}
+
+struct UnblockAccountsRequest: Request, Authorized {
+    typealias  Response = RelationshipJson
+
+    let method: HTTPMethod = .post
+    var path: String { return "/api/v1/accounts/\(id)/unblock" }
+
+    let configuration: Configuration
+    let accessToken: String
+    let id: Int
+
+    var dataParser: DataParser {
+        return JSONDataParser(readingOptions: [])
+    }
+}

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C6449E41EA682970025B702 /* Json_Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6449E31EA682970025B702 /* Json_Relationship.swift */; };
 		2CDB66D71EA63A54003457E6 /* _Development.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB66C21EA63A54003457E6 /* _Development.swift */; };
 		2CDB66D81EA63A54003457E6 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB66C31EA63A54003457E6 /* Cancellable.swift */; };
 		2CDB66D91EA63A54003457E6 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB66C41EA63A54003457E6 /* Client.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C6449E31EA682970025B702 /* Json_Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Json_Relationship.swift; sourceTree = "<group>"; };
 		2CDB66B61EA639F0003457E6 /* Mastodon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mastodon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CDB66C21EA63A54003457E6 /* _Development.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Development.swift; sourceTree = "<group>"; };
 		2CDB66C31EA63A54003457E6 /* Cancellable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				2CDB66CE1EA63A54003457E6 /* Json_Attachment.swift */,
 				2CDB66CF1EA63A54003457E6 /* Json_Mention.swift */,
 				2CDB66D01EA63A54003457E6 /* Json_OAuthToken.swift */,
+				2C6449E31EA682970025B702 /* Json_Relationship.swift */,
 				2CDB66D11EA63A54003457E6 /* Json_Status.swift */,
 				2CDB66D21EA63A54003457E6 /* Json_Tag.swift */,
 				2CDB66D31EA63A54003457E6 /* Json_Visibility.swift */,
@@ -225,6 +228,7 @@
 				2CDB66E71EA63A54003457E6 /* Json_Tag.swift in Sources */,
 				2CDB66E91EA63A54003457E6 /* Reference.swift in Sources */,
 				2CDB66DD1EA63A54003457E6 /* Endpoint_Statuses.swift in Sources */,
+				2C6449E41EA682970025B702 /* Json_Relationship.swift in Sources */,
 				2CDB66D81EA63A54003457E6 /* Cancellable.swift in Sources */,
 				2CDB66EB1EA63A54003457E6 /* Transformer_Url.swift in Sources */,
 				2CDB66E21EA63A54003457E6 /* Json_Application.swift in Sources */,
