@@ -60,6 +60,38 @@ public struct DefaultClient: Client {
     }
 
     @discardableResult
+    public func followAccounts(
+        accessToken: String,
+        id: Int,
+        complete: @escaping (Result<RelationshipJson, Error>) -> Void
+    ) -> Cancellable {
+        return send(
+            request: FollowAccountsRequest(
+                configuration: configuration,
+                accessToken: accessToken,
+                id: id
+            ),
+            complete: complete
+        )
+    }
+
+    @discardableResult
+    public func unfollowAccounts(
+        accessToken: String,
+        id: Int,
+        complete: @escaping (Result<RelationshipJson, Error>) -> Void
+    ) -> Cancellable {
+        return send(
+            request: UnfollowAccountsRequest(
+                configuration: configuration,
+                accessToken: accessToken,
+                id: id
+            ),
+            complete: complete
+        )
+    }
+
+    @discardableResult
     public func blockAccounts(
         accessToken: String,
         id: Int,

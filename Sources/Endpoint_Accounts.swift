@@ -30,6 +30,36 @@ struct VerifyCredentials: Request, Authorized {
     }
 }
 
+struct FollowAccountsRequest: Request, Authorized {
+    typealias  Response = RelationshipJson
+
+    let method: HTTPMethod = .post
+    var path: String { return "/api/v1/accounts/\(id)/follow" }
+
+    let configuration: Configuration
+    let accessToken: String
+    let id: Int
+
+    var dataParser: DataParser {
+        return JSONDataParser(readingOptions: [])
+    }
+}
+
+struct UnfollowAccountsRequest: Request, Authorized {
+    typealias  Response = RelationshipJson
+
+    let method: HTTPMethod = .post
+    var path: String { return "/api/v1/accounts/\(id)/unfollow" }
+
+    let configuration: Configuration
+    let accessToken: String
+    let id: Int
+
+    var dataParser: DataParser {
+        return JSONDataParser(readingOptions: [])
+    }
+}
+
 struct BlockAccountsRequest: Request, Authorized {
     typealias  Response = RelationshipJson
 
