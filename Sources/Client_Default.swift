@@ -11,12 +11,13 @@ public struct DefaultClient: Client {
         self.session = session
     }
 
+    @discardableResult
     public func postOAuthToken(
         userName: String,
         password: String,
         scope: String,
         complete: @escaping (Result<OAuthTokenJson, Error>) -> Void
-    ) {
+    ) -> Cancellable {
         return send(
             request: PostOAuthTokenRequest(
                 configuration: configuration,
@@ -28,7 +29,12 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func getAccounts(accessToken: String, id: Int, complete: @escaping (Result<AccountJson, Error>) -> Void) {
+    @discardableResult
+    public func getAccounts(
+        accessToken: String,
+        id: Int,
+        complete: @escaping (Result<AccountJson, Error>) -> Void
+    ) -> Cancellable {
         return send(
             request: GetAccounts(
                 configuration: configuration,
@@ -39,7 +45,11 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func verifyCredentials(accessToken: String, complete: @escaping (Result<AccountJson, Error>) -> Void) {
+    @discardableResult
+    public func verifyCredentials(
+        accessToken: String,
+        complete: @escaping (Result<AccountJson, Error>) -> Void
+    ) -> Cancellable {
         return send(
             request: VerifyCredentials(
                 configuration: configuration,
@@ -50,6 +60,7 @@ public struct DefaultClient: Client {
     }
 
     // TODO: Support for toot with media.
+    @discardableResult
     public func postStatuses(
         accessToken: String,
         status: String,
@@ -58,7 +69,7 @@ public struct DefaultClient: Client {
         spoilerText: String?,
         visibility: VisibilityJson?,
         complete: @escaping (Result<StatusJson, Error>) -> Void
-    ) {
+    ) -> Cancellable {
         return send(
             request: PostStatuses(
                 configuration: configuration,
@@ -73,7 +84,12 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func deleteStatuses(accessToken: String, id: Int, complete: @escaping (Result<Void, Error>) -> Void) {
+    @discardableResult
+    public func deleteStatuses(
+        accessToken: String,
+        id: Int,
+        complete: @escaping (Result<Void, Error>) -> Void
+    ) -> Cancellable {
         return send(
             request: DeleteStatuses(
                 configuration: configuration,
@@ -84,12 +100,13 @@ public struct DefaultClient: Client {
         )
     }
 
+    @discardableResult
     public func getTimelinesHome(
         accessToken: String,
         maxId: Int?,
         sinceId: Int?,
         complete: @escaping (Result<[StatusJson], Error>) -> Void
-    ) {
+    ) -> Cancellable {
         return send(
             request: GetTimelinesHomeRequest(
                 configuration: configuration,
@@ -104,18 +121,10 @@ public struct DefaultClient: Client {
     private func send<Request: Mastodon.Request>(
         request: Request,
         complete: @escaping (Result<Request.Response, Error>) -> Void
-    ) {
-        self.session.send(request) {
+    ) -> Cancellable {
+        let task = self.session.send(request) {
             complete($0.mapError(convert))
         }
-    }
-
-    private func send<Request: Mastodon.Request>(
-        request: Request,
-        complete: @escaping (Result<Request.Response, Error>) -> Void
-    ) where Request.Response == Void {
-        self.session.send(request) {
-            complete($0.mapError(convert))
-        }
+        return Cancellable { [weak task] in task?.cancel() }
     }
 }
