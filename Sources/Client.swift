@@ -25,6 +25,20 @@ public protocol Client {
     ) -> Cancellable
 
     @discardableResult
+    func followAccounts(
+        accessToken: String,
+        id: Int,
+        complete: @escaping (Result<RelationshipJson, Error>) -> Void
+    ) -> Cancellable
+
+    @discardableResult
+    func unfollowAccounts(
+        accessToken: String,
+        id: Int,
+        complete: @escaping (Result<RelationshipJson, Error>) -> Void
+    ) -> Cancellable
+
+    @discardableResult
     func blockAccounts(
         accessToken: String,
         id: Int,
