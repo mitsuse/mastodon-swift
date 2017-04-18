@@ -38,6 +38,20 @@ public protocol Client {
         complete: @escaping (Result<RelationshipJson, Error>) -> Void
     ) -> Cancellable
 
+    @discardableResult
+    func muteAccounts(
+        accessToken: String,
+        id: Int,
+        complete: @escaping (Result<RelationshipJson, Error>) -> Void
+    ) -> Cancellable
+
+    @discardableResult
+    func unmuteAccounts(
+        accessToken: String,
+        id: Int,
+        complete: @escaping (Result<RelationshipJson, Error>) -> Void
+    ) -> Cancellable
+
     // TODO: Support for toot with media.
     @discardableResult
     func postStatuses(

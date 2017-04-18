@@ -91,6 +91,38 @@ public struct DefaultClient: Client {
         )
     }
 
+    @discardableResult
+    public func muteAccounts(
+        accessToken: String,
+        id: Int,
+        complete: @escaping (Result<RelationshipJson, Error>) -> Void
+    ) -> Cancellable {
+        return send(
+            request: MuteAccountsRequest(
+                configuration: configuration,
+                accessToken: accessToken,
+                id: id
+            ),
+            complete: complete
+        )
+    }
+
+    @discardableResult
+    public func unmuteAccounts(
+        accessToken: String,
+        id: Int,
+        complete: @escaping (Result<RelationshipJson, Error>) -> Void
+    ) -> Cancellable {
+        return send(
+            request: UnmuteAccountsRequest(
+                configuration: configuration,
+                accessToken: accessToken,
+                id: id
+            ),
+            complete: complete
+        )
+    }
+
     // TODO: Support for toot with media.
     @discardableResult
     public func postStatuses(

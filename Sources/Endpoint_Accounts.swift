@@ -59,3 +59,33 @@ struct UnblockAccountsRequest: Request, Authorized {
         return JSONDataParser(readingOptions: [])
     }
 }
+
+struct MuteAccountsRequest: Request, Authorized {
+    typealias  Response = RelationshipJson
+
+    let method: HTTPMethod = .post
+    var path: String { return "/api/v1/accounts/\(id)/mute" }
+
+    let configuration: Configuration
+    let accessToken: String
+    let id: Int
+
+    var dataParser: DataParser {
+        return JSONDataParser(readingOptions: [])
+    }
+}
+
+struct UnmuteAccountsRequest: Request, Authorized {
+    typealias  Response = RelationshipJson
+
+    let method: HTTPMethod = .post
+    var path: String { return "/api/v1/accounts/\(id)/unmute" }
+
+    let configuration: Configuration
+    let accessToken: String
+    let id: Int
+
+    var dataParser: DataParser {
+        return JSONDataParser(readingOptions: [])
+    }
+}
