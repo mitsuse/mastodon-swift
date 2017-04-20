@@ -11,4 +11,5 @@ Pod::Spec.new do |spec|
   spec.dependency 'Result', '~> 3.2'
   spec.dependency 'Himotoki', '~> 3.0'
   spec.dependency 'APIKit', '~> 3.1'
+  spec.dependency 'RxSwift', '~> 3.4'
 end
