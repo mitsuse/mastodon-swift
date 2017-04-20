@@ -1,97 +1,20 @@
-import Result
+import RxSwift
 
 public protocol Client {
     var configuration: Configuration { get }
 
-    @discardableResult
-    func postOAuthToken(
-        userName: String,
-        password: String,
-        scope: String,
-        complete: @escaping (Result<OAuthTokenJson, Error>) -> Void
-    ) -> Cancellable
-
-    @discardableResult
-    func getAccounts(
-        accessToken: String,
-        id: Int,
-        complete: @escaping (Result<AccountJson, Error>) -> Void
-    ) -> Cancellable
-
-    @discardableResult
-    func verifyCredentials(
-        accessToken: String,
-        complete: @escaping (Result<AccountJson, Error>) -> Void
-    ) -> Cancellable
-
-    @discardableResult
-    func followAccounts(
-        accessToken: String,
-        id: Int,
-        complete: @escaping (Result<RelationshipJson, Error>) -> Void
-    ) -> Cancellable
-
-    @discardableResult
-    func unfollowAccounts(
-        accessToken: String,
-        id: Int,
-        complete: @escaping (Result<RelationshipJson, Error>) -> Void
-    ) -> Cancellable
-
-    @discardableResult
-    func blockAccounts(
-        accessToken: String,
-        id: Int,
-        complete: @escaping (Result<RelationshipJson, Error>) -> Void
-    ) -> Cancellable
-
-    @discardableResult
-    func unblockAccounts(
-        accessToken: String,
-        id: Int,
-        complete: @escaping (Result<RelationshipJson, Error>) -> Void
-    ) -> Cancellable
-
-    @discardableResult
-    func muteAccounts(
-        accessToken: String,
-        id: Int,
-        complete: @escaping (Result<RelationshipJson, Error>) -> Void
-    ) -> Cancellable
-
-    @discardableResult
-    func unmuteAccounts(
-        accessToken: String,
-        id: Int,
-        complete: @escaping (Result<RelationshipJson, Error>) -> Void
-    ) -> Cancellable
-
-    // TODO: Support for toot with media.
-    @discardableResult
-    func postStatuses(
-        accessToken: String,
-        status: String,
-        inReplyToId: Int?,
-        sensitive: Bool?,
-        spoilerText: String?,
-        visibility: VisibilityJson?,
-        complete: @escaping (Result<StatusJson, Error>) -> Void
-    ) -> Cancellable
-
-    @discardableResult
-    func deleteStatuses(
-        accessToken: String,
-        id: Int,
-        complete: @escaping (Result<Void, Error>) -> Void
-    ) -> Cancellable
-
-    @discardableResult
-    func getTimelinesHome(
-        accessToken: String,
-        maxId: Int?,
-        sinceId: Int?,
-        complete: @escaping (Result<[StatusJson], Error>) -> Void
-    ) -> Cancellable
+    func postOAuthToken(userName: String, password: String, scope: String) -> Single<OAuthTokenJson>
+    func getAccounts(accessToken: String, id: Int) -> Single<AccountJson>
+    func verifyCredentials(accessToken: String) -> Single<AccountJson>
+    func followAccounts(accessToken: String, id: Int) -> Single<RelationshipJson>
+    func unfollowAccounts(accessToken: String, id: Int) -> Single<RelationshipJson>
+    func blockAccounts(accessToken: String, id: Int) -> Single<RelationshipJson>
+    func unblockAccounts(accessToken: String, id: Int) -> Single<RelationshipJson>
+    func muteAccounts(accessToken: String, id: Int) -> Single<RelationshipJson>
+    func unmuteAccounts(accessToken: String, id: Int) -> Single<RelationshipJson>
+    func postStatuses(accessToken: String, status: String, inReplyToId: Int?, sensitive: Bool?, spoilerText: String?, visibility: VisibilityJson?) -> Single<StatusJson>
+    func deleteStatuses(accessToken: String, id: Int) -> Single<Void>
+    func getTimelinesHome(accessToken: String, maxId: Int?, sinceId: Int?) -> Single<[StatusJson]>
 }
 
 public struct Configuration {

@@ -20,5 +20,10 @@ let package = Package(
             majorVersion: 3,
             minor: 1
         ),
+        .Package(
+            url: "https://github.com/ReactiveX/RxSwift.git",
+            majorVersion: 3,
+            minor: 4
+        ),
     ]
 )

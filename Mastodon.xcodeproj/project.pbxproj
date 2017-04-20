@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2F236D1EA8DA0500881F01 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F236C1EA8DA0500881F01 /* RxSwift.framework */; };
 		2C6449E41EA682970025B702 /* Json_Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6449E31EA682970025B702 /* Json_Relationship.swift */; };
 		2CDB66D71EA63A54003457E6 /* _Development.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB66C21EA63A54003457E6 /* _Development.swift */; };
-		2CDB66D81EA63A54003457E6 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB66C31EA63A54003457E6 /* Cancellable.swift */; };
 		2CDB66D91EA63A54003457E6 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB66C41EA63A54003457E6 /* Client.swift */; };
 		2CDB66DA1EA63A54003457E6 /* Client_Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB66C51EA63A54003457E6 /* Client_Default.swift */; };
 		2CDB66DB1EA63A54003457E6 /* Endpoint_Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB66C61EA63A54003457E6 /* Endpoint_Accounts.swift */; };
@@ -36,10 +36,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C2F236C1EA8DA0500881F01 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		2C6449E31EA682970025B702 /* Json_Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Json_Relationship.swift; sourceTree = "<group>"; };
 		2CDB66B61EA639F0003457E6 /* Mastodon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mastodon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CDB66C21EA63A54003457E6 /* _Development.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Development.swift; sourceTree = "<group>"; };
-		2CDB66C31EA63A54003457E6 /* Cancellable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 		2CDB66C41EA63A54003457E6 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		2CDB66C51EA63A54003457E6 /* Client_Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client_Default.swift; sourceTree = "<group>"; };
 		2CDB66C61EA63A54003457E6 /* Endpoint_Accounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint_Accounts.swift; sourceTree = "<group>"; };
@@ -71,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C2F236D1EA8DA0500881F01 /* RxSwift.framework in Frameworks */,
 				2CDB66F71EA63BDC003457E6 /* Result.framework in Frameworks */,
 				2CDB66F61EA63BDC003457E6 /* Himotoki.framework in Frameworks */,
 				2CDB66F51EA63BDC003457E6 /* APIKit.framework in Frameworks */,
@@ -102,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				2CDB66C21EA63A54003457E6 /* _Development.swift */,
-				2CDB66C31EA63A54003457E6 /* Cancellable.swift */,
 				2CDB66C51EA63A54003457E6 /* Client_Default.swift */,
 				2CDB66C41EA63A54003457E6 /* Client.swift */,
 				2CDB66C61EA63A54003457E6 /* Endpoint_Accounts.swift */,
@@ -142,6 +142,7 @@
 				2CDB66F21EA63BDC003457E6 /* APIKit.framework */,
 				2CDB66F31EA63BDC003457E6 /* Himotoki.framework */,
 				2CDB66F41EA63BDC003457E6 /* Result.framework */,
+				2C2F236C1EA8DA0500881F01 /* RxSwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -229,7 +230,6 @@
 				2CDB66E91EA63A54003457E6 /* Reference.swift in Sources */,
 				2CDB66DD1EA63A54003457E6 /* Endpoint_Statuses.swift in Sources */,
 				2C6449E41EA682970025B702 /* Json_Relationship.swift in Sources */,
-				2CDB66D81EA63A54003457E6 /* Cancellable.swift in Sources */,
 				2CDB66EB1EA63A54003457E6 /* Transformer_Url.swift in Sources */,
 				2CDB66E21EA63A54003457E6 /* Json_Application.swift in Sources */,
 				2CDB66D71EA63A54003457E6 /* _Development.swift in Sources */,
