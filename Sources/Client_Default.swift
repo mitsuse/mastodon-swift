@@ -1,6 +1,6 @@
 import APIKit
 import Himotoki
-import RxSwift
+import PromiseKit
 
 public struct DefaultClient: Client {
     public let configuration: Configuration
@@ -11,7 +11,7 @@ public struct DefaultClient: Client {
         self.session = session
     }
 
-    public func postOAuthToken(userName: String, password: String, scope: String) -> Single<OAuthTokenJson> {
+    public func postOAuthToken(userName: String, password: String, scope: String) -> Promise<OAuthTokenJson> {
         return send(
             request: PostOAuthTokenRequest(
                 configuration: configuration,
@@ -22,7 +22,7 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func getAccounts(accessToken: String, id: Int) -> Single<AccountJson> {
+    public func getAccounts(accessToken: String, id: Int) -> Promise<AccountJson> {
         return send(
             request: GetAccounts(
                 configuration: configuration,
@@ -32,7 +32,7 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func verifyCredentials(accessToken: String) -> Single<AccountJson> {
+    public func verifyCredentials(accessToken: String) -> Promise<AccountJson> {
         return send(
             request: VerifyCredentials(
                 configuration: configuration,
@@ -41,7 +41,7 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func followAccounts(accessToken: String, id: Int) -> Single<RelationshipJson> {
+    public func followAccounts(accessToken: String, id: Int) -> Promise<RelationshipJson> {
         return send(
             request: FollowAccountsRequest(
                 configuration: configuration,
@@ -51,7 +51,7 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func unfollowAccounts(accessToken: String, id: Int) -> Single<RelationshipJson> {
+    public func unfollowAccounts(accessToken: String, id: Int) -> Promise<RelationshipJson> {
         return send(
             request: UnfollowAccountsRequest(
                 configuration: configuration,
@@ -61,7 +61,7 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func blockAccounts(accessToken: String, id: Int) -> Single<RelationshipJson> {
+    public func blockAccounts(accessToken: String, id: Int) -> Promise<RelationshipJson> {
         return send(
             request: BlockAccountsRequest(
                 configuration: configuration,
@@ -71,7 +71,7 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func unblockAccounts(accessToken: String, id: Int) -> Single<RelationshipJson> {
+    public func unblockAccounts(accessToken: String, id: Int) -> Promise<RelationshipJson> {
         return send(
             request: UnblockAccountsRequest(
                 configuration: configuration,
@@ -81,7 +81,7 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func muteAccounts(accessToken: String, id: Int) -> Single<RelationshipJson> {
+    public func muteAccounts(accessToken: String, id: Int) -> Promise<RelationshipJson> {
         return send(
             request: MuteAccountsRequest(
                 configuration: configuration,
@@ -91,7 +91,7 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func unmuteAccounts(accessToken: String, id: Int) -> Single<RelationshipJson> {
+    public func unmuteAccounts(accessToken: String, id: Int) -> Promise<RelationshipJson> {
         return send(
             request: UnmuteAccountsRequest(
                 configuration: configuration,
@@ -102,7 +102,7 @@ public struct DefaultClient: Client {
     }
 
     // TODO: Support for toot with media.
-    public func postStatuses(accessToken: String, status: String, inReplyToId: Int?, sensitive: Bool?, spoilerText: String?, visibility: VisibilityJson?) -> Single<StatusJson> {
+    public func postStatuses(accessToken: String, status: String, inReplyToId: Int?, sensitive: Bool?, spoilerText: String?, visibility: VisibilityJson?) -> Promise<StatusJson> {
         return send(
             request: PostStatuses(
                 configuration: configuration,
@@ -116,7 +116,7 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func deleteStatuses(accessToken: String, id: Int) -> Single<Void> {
+    public func deleteStatuses(accessToken: String, id: Int) -> Promise<Void> {
         return send(
             request: DeleteStatuses(
                 configuration: configuration,
@@ -126,7 +126,7 @@ public struct DefaultClient: Client {
         )
     }
 
-    public func getTimelinesHome(accessToken: String, maxId: Int?, sinceId: Int?) -> Single<[StatusJson]> {
+    public func getTimelinesHome(accessToken: String, maxId: Int?, sinceId: Int?) -> Promise<[StatusJson]> {
         return send(
             request: GetTimelinesHomeRequest(
                 configuration: configuration,
@@ -137,15 +137,14 @@ public struct DefaultClient: Client {
         )
     }
 
-    private func send<Request: Mastodon.Request>(request: Request) -> Single<Request.Response> {
-        return Single<Request.Response>.create { [weak session] observe in
-            let task = session?.send(request) { result in
+    private func send<Request: Mastodon.Request>(request: Request) -> Promise<Request.Response> {
+        return Promise { [weak session] fulfill, reject in
+            session?.send(request) { result in
                 switch result {
-                case let .success(response): observe(.success(response))
-                case let .failure(error): observe(.error(error))
+                case let .success(response): fulfill(response)
+                case let .failure(error): reject(error)
                 }
             }
-            return Disposables.create { [weak task] in task?.cancel() }
         }
     }
 }
