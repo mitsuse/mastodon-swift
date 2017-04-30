@@ -21,9 +21,9 @@ let package = Package(
             minor: 1
         ),
         .Package(
-            url: "https://github.com/ReactiveX/RxSwift.git",
-            majorVersion: 3,
-            minor: 4
+            url: "https://github.com/mxcl/PromiseKit.git",
+            majorVersion: 4,
+            minor: 2
         ),
     ]
 )
